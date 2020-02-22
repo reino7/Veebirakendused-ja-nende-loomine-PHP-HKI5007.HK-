@@ -1,0 +1,27 @@
+
+Esimese koduse tööna palun täiendage tunnis loodud "rakendust"!
+
+1) lisage lehele kolm pilti, juhuslikud ja nii, et ükski kolmest pildist ei kordu.
+Selleks tuleks näiteks luua veel üks massiiv, kus hoiustame loositud numbreid.
+Tuleb teha tsükkel, mida läbitakse 3 korda ja mille sees oleks
+{
+do {
+	loosi number;
+} while (loositud number on juba massiivis);
+
+lisage uus number massiivi
+}
+
+Uurige do ... while tsüklit, kui vaja.
+
+Töö palun esitada saates link minu e-postiaadressil: rinde@tlu.ee
+
+2) Sõltvalt lehe laadimise kellaajast määrake lehele erinevad tausta ja tekstivärvid (et ikka tekst loetav oleks). 
+Selleks tuleb sõltuvalt kellaajast (tundidest) kirjutada veebilehe <head> elemendi sisse <style> element, mille sisus oleks lehe body jaoks nii tausta värv kui ka teksti värv.
+
+Kes soovib, võib lehe mingi osa panna <div> elemendi sisse ja vaid selle värve seada.
+
+3) Semestri kulgemise kontrolli juurde lisada variant, kus semester polegi veel alanud (semestri algusest möödunud päevade arv oleks negatiivne) ja variant, kus semester on lõppenud (päevade arv ületab juba semestri kestuse). Neil juhtudel pole <meter> elementi mõtet üldse näidata, andke tekstiga teada, mis olukord on!
+
+
+Jõudu tööle!
