@@ -1,6 +1,6 @@
 <?php
   // $serverUsername = "reinoristissaar";
-  // $serverPassword = "cf40IgTx";
+  // $serverPassword = "****";
   $serverUsername = "phptund";
   $serverPassword = "phptund";
   $serverHost = "localhost";
