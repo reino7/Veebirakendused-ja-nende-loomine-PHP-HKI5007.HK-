@@ -53,13 +53,9 @@
       $GLOBALS["database"]
     );
     
-    $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-    if (strpos($url,'latestnews') !== false) {
-        $stmt = $conn->prepare("SELECT title, content FROM vr20_news ORDER BY created DESC LIMIT 5");
-    } else {
-      $stmt = $conn->prepare("SELECT title, content FROM vr20_news ORDER BY created DESC");
-    }
+    $stmt = $conn->prepare("SELECT title, content FROM vr20_news ORDER BY created DESC");
+
 
     //$stmt = $conn->prepare("SELECT title, content FROM vr20_news ORDER BY created DESC");
     echo $conn->error;
