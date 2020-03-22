@@ -1,7 +1,7 @@
 <?php
 
 require 'helper.php';
-require 'db/configuration.php';
+require 'db/tigu-configuration.php';
 require 'fnc_news.php';
 
 $newsHTML = readNews(1);

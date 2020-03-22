@@ -50,8 +50,22 @@ function readLog() {
     $GLOBALS["serverPassword"],
     $GLOBALS["database"]
   );
-  
-  $stmt = $conn->prepare("SELECT dayadded, course, activity, studytime FROM vr20_studylog ORDER BY dayadded DESC");
+
+  // Returns the default character set for the database connection
+  // printf("Initial character set: %s\n", $conn->character_set_name());
+  // sets the connection charset to utf8
+  $conn->set_charset("utf8");
+
+  $stmt = $conn->prepare("SELECT 
+                            vr20_studylog.dayadded, 
+                            vr20_studylog_courses.CourseName, 
+                            vr20_studylog_activities.ActivityName, 
+                            vr20_studylog.studytime 
+                          FROM ((vr20_studylog 
+                          INNER JOIN vr20_studylog_courses ON vr20_studylog.course=vr20_studylog_courses.CourseID)
+                          INNER JOIN vr20_studylog_activities ON vr20_studylog.activity=vr20_studylog_activities.ActivityID)
+                          ORDER BY vr20_studylog.dayadded 
+                          DESC");
 
   echo $conn->error;
   $stmt->bind_result($dayaddedFromDB, $courseFromDB, $activityFromDB, $studytimeFromDB);
@@ -85,6 +99,96 @@ function readLog() {
     $response = '<div class="alert alert-warning text-center" role="alert">
     Õppelogi on tühi. Sisesta midagi ...
   </div>';
+  }
+
+  // sulgen päringu ja andmebaasi ühenduse
+  $stmt->close();
+  $conn->close();
+
+  return $response;
+  
+}
+
+
+function getCourses() {
+
+  $response = null;
+
+  // creating connection to db
+  $conn = new mysqli(
+    $GLOBALS["serverHost"],
+    $GLOBALS["serverUsername"],
+    $GLOBALS["serverPassword"],
+    $GLOBALS["database"]
+  );
+  
+  $stmt = $conn->prepare("SELECT CourseID, CourseName
+                          FROM vr20_studylog_courses 
+                          ORDER BY CourseID 
+                          ASC");
+
+  // sets the connection charset to utf8
+  $conn->set_charset("utf8");
+
+  echo $conn->error;
+  $stmt->bind_result($courseID, $courseName);
+  $stmt->execute();
+
+
+  while ($stmt->fetch()) {
+
+    // building option values from db to select
+    $response .= '<option value="' . $courseID . '">' . $courseName . '</option>';
+  }
+
+  if($response == null) {
+    $response = '<div class="alert alert-warning text-center" role="alert">
+    No Courses available!</div>';
+  }
+
+  // sulgen päringu ja andmebaasi ühenduse
+  $stmt->close();
+  $conn->close();
+
+  return $response;
+  
+}
+
+
+function getActivities() {
+
+  $response = null;
+
+  // creating connection to db
+  $conn = new mysqli(
+    $GLOBALS["serverHost"],
+    $GLOBALS["serverUsername"],
+    $GLOBALS["serverPassword"],
+    $GLOBALS["database"]
+  );
+  
+  $stmt = $conn->prepare("SELECT ActivityID, ActivityName
+                          FROM vr20_studylog_activities 
+                          ORDER BY ActivityID 
+                          ASC");
+
+  // sets the connection charset to utf8
+  $conn->set_charset("utf8");
+  
+  echo $conn->error;
+  $stmt->bind_result($activityID, $activityName);
+  $stmt->execute();
+
+
+  while ($stmt->fetch()) {
+
+    // building option values from db to select
+    $response .= '<option value="' . $activityID . '">' . $activityName . '</option>';
+  }
+
+  if($response == null) {
+    $response = '<div class="alert alert-warning text-center" role="alert">
+    No Courses available!</div>';
   }
 
   // sulgen päringu ja andmebaasi ühenduse

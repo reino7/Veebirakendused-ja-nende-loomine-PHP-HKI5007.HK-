@@ -53,6 +53,10 @@
       $GLOBALS["database"]
     );
     
+    // Returns the default character set for the database connection
+    // printf("Initial character set: %s\n", $conn->character_set_name());
+    // sets the connection charset to utf8
+    $conn->set_charset("utf8");
 
     $stmt = $conn->prepare("SELECT title, created, content FROM vr20_news WHERE deleted IS NULL ORDER BY created DESC LIMIT ?");
     echo $conn->error;

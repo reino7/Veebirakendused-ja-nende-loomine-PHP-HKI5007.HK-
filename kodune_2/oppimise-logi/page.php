@@ -1,7 +1,7 @@
 <?php
 
 require 'helper.php';
-require 'db/configuration.php';
+require 'db/tigu-configuration.php';
 require 'fnc.php';
 
 // debugging: view $_POST array content
@@ -12,6 +12,9 @@ $course    = null;
 $activity  = null;
 $studytime = null;
 $saveError = null;
+$getCoursesHTML = getCourses();
+$getActivitiesHTML = getActivities();
+
 
 function testInputData($data)
 {
@@ -70,7 +73,7 @@ if (isset($_POST["saveBtn"])) {
 <!DOCTYPE html>
 <html lang="et">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Õppimise logi</title>
@@ -103,21 +106,23 @@ if (isset($_POST["saveBtn"])) {
       <label for="course">Õppeaine</label>
       <select name="course" id="course" class="form-control">
         <option value="" selected>Vali...</option>
-        <option value="HKI5068.HK">Multimeediumi praktika (HKI5068.HK)</option>
-        <option value="HKI5096.HK">Veebirakendused ja nende loomine (HKI5096.HK)</option>
-        <option value="HKI6010.HK">Andmeturve (HKI6010.HK)</option>
-        <option value="HKI5061.HK">Mobiilirakenduste arendamine (HKI5061.HK)</option>
-        <option value="HKI5066.HK">Digitaalne helikujundus (HKI5066.HK)</option>
+        <?php echo $getCoursesHTML; ?>
+        <!-- <option value="1">Multimeediumi praktika (HKI5068.HK)</option>
+        <option value="2">Veebirakendused ja nende loomine (HKI5096.HK)</option>
+        <option value="3">Andmeturve (HKI6010.HK)</option>
+        <option value="4">Mobiilirakenduste arendamine (HKI5061.HK)</option>
+        <option value="5">Digitaalne helikujundus (HKI5066.HK)</option> -->
       </select>
 
       <!-- Tegevused rippmenüü -->
       <label for="activity" class="mt-3">Tegevused</label>
       <select name="activity" id="activity" class="form-control">
         <option value="" selected>Vali...</option>
-        <option value="selfstudy">Iseseisev materjali omandamine</option>
-        <option value="homework">Koduste ülesannete lahendamine</option>
-        <option value="repetition">Kordamine</option>
-        <option value="teamwork">Rühmatöö</option>
+        <?php echo $getActivitiesHTML; ?>
+        <!-- <option value="1">Iseseisev materjali omandamine</option>
+        <option value="2">Koduste ülesannete lahendamine</option>
+        <option value="3">Kordamine</option>
+        <option value="4">Rühmatöö</option> -->
       </select>
 
       <!-- numbri sisestus, mis laseb valida veerand tunni täpsusega -->

@@ -1,7 +1,7 @@
 <?php
 
 require 'helper.php';
-require 'db/configuration.php';
+require 'db/tigu-configuration.php';
 require 'fnc.php';
 
 $log = readLog();
@@ -11,7 +11,7 @@ $log = readLog();
 <!DOCTYPE html>
 <html lang="et">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Vaata logi</title>
