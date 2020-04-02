@@ -5,7 +5,7 @@ include 'helper.php';
 
 // Loen etteantud kataloogist pildifailid juhuslikkuse alusel
 // pildikataloog
-$picsDir = "../../pics/";
+$picsDir = "../pics/";
 // lubatud failitüübid
 $photoTypesAllowed = ["image/jpeg", "image/png"];
 // tühi massiiv, kuhu lisatakse kataloogist saadud failid nimekirjana
