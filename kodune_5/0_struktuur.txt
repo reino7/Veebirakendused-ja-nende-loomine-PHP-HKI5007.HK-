@@ -1,0 +1,12 @@
+page.php - Avaleht
+  newuser.php - uue kasutajakonto loomine
+  home.php - kasutajakonto Avaleht
+    addnews.php - Uudiste lisamise leht
+    fnc_news.php - Uudiste lisamine ja lugemine adnmebaasist
+    photoUpload.php - Fotode üleslaadimise leht
+    fnc_photoUpload.php - Fotode lisamine ja lugemine, andmebaasist ja kaustadest
+
+classes - klasside kaust
+  Session.class.php - sessioonide manageerimise klass
+
+db - andmebaaside info kaust
