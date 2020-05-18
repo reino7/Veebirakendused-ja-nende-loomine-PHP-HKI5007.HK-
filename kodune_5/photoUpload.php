@@ -16,6 +16,7 @@ if (isset($_GET["logout"])) {
 
 require "db/configuration.php";
 require "fnc_photoUpload.php";
+require "classes/Photo.class.php";
 
 // pildi üleslaadimise osa
 echo "<pre>";
@@ -85,32 +86,22 @@ if (isset($_POST["photoSubmit"]) and !empty($_FILES["fileToUpload"]["tmp_name"])
 
   //kui vigu pole
   if ($error == null) {
+
+    $photoUp = new Photo($_FILES["fileToUpload"], $imageFileType);
+
     //teen pildi väiksemaks
-    if ($imageFileType == "jpg") {
-      $myTempImage = imagecreatefromjpeg($_FILES["fileToUpload"]["tmp_name"]);
-    }
-    if ($imageFileType == "png") {
-      $myTempImage = imagecreatefrompng($_FILES["fileToUpload"]["tmp_name"]);
-    }
+    // if ($imageFileType == "jpg") {
+    //   $myTempImage = imagecreatefromjpeg($_FILES["fileToUpload"]["tmp_name"]);
+    // }
+    // if ($imageFileType == "png") {
+    //   $myTempImage = imagecreatefrompng($_FILES["fileToUpload"]["tmp_name"]);
+    // }
+   
+    //$myNewImage = resizePhoto($myTempImage, $maxWidth, $maxHeight);
+    $photoUp->resizePhoto($maxWidth, $maxHeight);
 
-    // alljärgnev viidud funktsiooni üle
-    /*$imageW = imagesx($myTempImage);
-      $imageH = imagesy($myTempImage);
+    $result = saveImgToFile($photoUp->myNewImage, $normalPhotoDir . $fileName, $imageFileType);
 
-      if ($imageW / $maxWidth > $imageH / $maxHeight) {
-        $imageSizeRatio = $imageW / $maxWidth;
-      } else {
-        $imageSizeRatio = $imageH / $maxHeight;
-      }
-
-      $newW = round($imageW / $imageSizeRatio);
-      $newH = round($imageH / $imageSizeRatio);
-      //loome uue ajutise pildiobjekti
-      $myNewImage = imagecreatetruecolor($newW, $newH);
-      imagecopyresampled($myNewImage, $myTempImage, 0, 0, 0, 0, $newW, $newH, $imageW, $imageH); */
-    
-    $myNewImage = resizePhoto($myTempImage, $maxWidth, $maxHeight);
-    $result = saveImgToFile($myNewImage, $normalPhotoDir . $fileName, $imageFileType);
     if ($result == 1) {
       $notice = $warningStart . "Vähendatud pilt laeti üles!" . $warningEnd;
     } else {
@@ -123,19 +114,23 @@ if (isset($_POST["photoSubmit"]) and !empty($_FILES["fileToUpload"]["tmp_name"])
     //   $error .= " Pildi üleslaadimisel tekkis viga!";
     // }
 
+    $photoUp->resizePhoto($thumbSize, $thumbSize);
+
     // lõpetame vähendatud pildiga ja teeme thumbnaili
-    imagedestroy($myNewImage);
-    $myNewImage = resizePhoto($myTempImage, $thumbSize, $thumbSize);
-    $result = saveImgToFile($myNewImage, $thumbPhotoDir . $fileName, $imageFileType);
+    // imagedestroy($myNewImage);
+    // $myNewImage = resizePhoto($myTempImage, $thumbSize, $thumbSize);
+    $result = saveImgToFile($photoUp->myNewImage, $thumbPhotoDir . $fileName, $imageFileType);
+
     if ($result == 1) {
       $notice .= $warningStart . "Pisipilt laeti üles!" . $warningEnd;
     } else {
       $error .= $warningStart . "Pisipildi salvestamsiel tekkis viga!" . $warningEnd;
     }
     
-    imagedestroy($myTempImage);
-    imagedestroy($myNewImage);
-
+    // imagedestroy($myTempImage);
+    // imagedestroy($myNewImage);
+    unset($photoUp);
+    
     if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $originalTarget)){
       $notice .= $warningStart . "Originaalpilt laeti üles! " . $warningEnd;
     } else {
