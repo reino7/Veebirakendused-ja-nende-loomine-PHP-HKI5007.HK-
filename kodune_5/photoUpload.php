@@ -27,9 +27,9 @@ require "classes/Photo.class.php";
 // var_dump($_FILES); // siin on üleslaetavad failid
 // echo "</pre>";
 
-$originalPhotoDir    = "uploadOriginalPhoto/";
-$normalPhotoDir      = "uploadNormalPhoto/";
-$thumbPhotoDir       = "uploadThumbPhoto/";
+// $originalPhotoDir    = "uploadOriginalPhoto/";
+// $normalPhotoDir      = "uploadNormalPhoto/";
+// $thumbPhotoDir       = "uploadThumbPhoto/";
 
 $error  = null;
 $notice = null;

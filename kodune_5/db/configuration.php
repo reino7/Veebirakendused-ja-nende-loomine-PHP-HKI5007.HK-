@@ -1,8 +1,15 @@
 <?php
+
+  // Database variables
   $serverUserName = "reinoristissaar";
   $serverPassword = "cf40IgTx";
   $serverHost = "localhost";
   $database = "reinoristissaar";
+
+  // Uploaded photos location variables
+  $originalPhotoDir    = "uploadOriginalPhoto/";
+  $normalPhotoDir      = "uploadNormalPhoto/";
+  $thumbPhotoDir       = "uploadThumbPhoto/";
 
   // Watermark variables
   $wmFile = "watermark/vr_rr.png";
