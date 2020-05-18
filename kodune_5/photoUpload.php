@@ -19,13 +19,13 @@ require "fnc_photoUpload.php";
 require "classes/Photo.class.php";
 
 // pildi üleslaadimise osa
-echo "<pre>";
-var_dump($_POST); // siin on kogu muu kraam
-echo "</pre>";
+// echo "<pre>";
+// var_dump($_POST); // siin on kogu muu kraam
+// echo "</pre>";
 
-echo "<pre>";
-var_dump($_FILES); // siin on üleslaetavad failid
-echo "</pre>";
+// echo "<pre>";
+// var_dump($_FILES); // siin on üleslaetavad failid
+// echo "</pre>";
 
 $originalPhotoDir    = "uploadOriginalPhoto/";
 $normalPhotoDir      = "uploadNormalPhoto/";
@@ -99,8 +99,12 @@ if (isset($_POST["photoSubmit"]) and !empty($_FILES["fileToUpload"]["tmp_name"])
    
     //$myNewImage = resizePhoto($myTempImage, $maxWidth, $maxHeight);
     $photoUp->resizePhoto($maxWidth, $maxHeight);
-
-    $result = saveImgToFile($photoUp->myNewImage, $normalPhotoDir . $fileName, $imageFileType);
+    
+    // lisan väsimärgi
+    // väsimärgi faili asukoht, 2 pareml üleval ääres, kaugus servast 10 pixlit
+    $photoUp->addWatermark($wmFile, $wmLocation, $fromEdge);
+    // $result = saveImgToFile($photoUp->myNewImage, $normalPhotoDir . $fileName, $imageFileType);
+    $result = $photoUp->saveImgToFile($normalPhotoDir . $fileName);
 
     if ($result == 1) {
       $notice = $warningStart . "Vähendatud pilt laeti üles!" . $warningEnd;
@@ -119,7 +123,8 @@ if (isset($_POST["photoSubmit"]) and !empty($_FILES["fileToUpload"]["tmp_name"])
     // lõpetame vähendatud pildiga ja teeme thumbnaili
     // imagedestroy($myNewImage);
     // $myNewImage = resizePhoto($myTempImage, $thumbSize, $thumbSize);
-    $result = saveImgToFile($photoUp->myNewImage, $thumbPhotoDir . $fileName, $imageFileType);
+    // $result = saveImgToFile($photoUp->myNewImage, $thumbPhotoDir . $fileName, $imageFileType);
+    $result = $photoUp->saveImgToFile($thumbPhotoDir . $fileName);
 
     if ($result == 1) {
       $notice .= $warningStart . "Pisipilt laeti üles!" . $warningEnd;
