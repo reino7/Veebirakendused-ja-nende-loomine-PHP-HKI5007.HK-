@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-  <a class="navbar-brand mr-3" href="#">Veebirakendused 2020</a>
+  <a class="navbar-brand mr-3" href="https://tigu.hk.tlu.ee/~reino.ristissaar/HK-veebirakendused-2020/kodune_5/home.php">Veebirakendused 2020</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -27,6 +27,18 @@
         <div class="dropdown-menu" aria-labelledby="dropdown03">
           <a class="dropdown-item" href="addnews.php">Lisamine</a>
           <a class="dropdown-item" href="news.php">Lugemine</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown mr-3">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <svg class="bi bi-stopwatch-fill" width="1em" height="1em" viewBox="0 0 19 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M5.5.5A.5.5 0 016 0h4a.5.5 0 010 1H9v1.07A7.002 7.002 0 018 16 7 7 0 017 2.07V1H6a.5.5 0 01-.5-.5zm3 4.5a.5.5 0 00-1 0v3.5h-3a.5.5 0 000 1H8a.5.5 0 00.5-.5V5z" clip-rule="evenodd"/>
+          </svg>
+          Õppimise logi
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdown03">
+          <a class="dropdown-item" href="study.php">Lisamine</a>
+          <a class="dropdown-item" href="log.php">Vaata logi</a>
         </div>
       </li>
       <li class="nav-item dropdown mr-3">
