@@ -20,30 +20,40 @@
 	}
 
 	require("db/configuration.php");
+	require("classes/Photo.class.php");
 	require("fnc_gallery.php");
-	
-	$privateThumbnails = readAllSemiPublicPictureThumbs();
+
+	$privateThumbnails = readAllPrivatePictureThumbs();
 ?>
 <!DOCTYPE html>
 <html lang="et">
+
 <head>
-	<meta charset="utf-8">
-	<title>Veebirakendused ja nende loomine 2020</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <title>Veebirakendused ja nende loomine 2020</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="css/lightbox.min.css" rel="stylesheet" />
 </head>
+
 <body>
-	    
-	<?php 
+
+  <?php 
 		require "includes/header.inc.php";
 	?>
   <div class="container">
 
-		<h2>Kasutajate avaldatavad pildid</h2>
-		<hr>
-		<?php echo $privateThumbnails;; ?>
+    <h2>Minu fotod</h2>
+    <hr>
 
-		</div>
+    <div class="row text-center">
 
-<?php 
-	require "includes/footer.inc.php";
-?>
+			<?php echo $privateThumbnails; ?>
+			
+  	</div>
+
+	</div>
+
+  <?php 
+		require "includes/footer.inc.php";
+	?>

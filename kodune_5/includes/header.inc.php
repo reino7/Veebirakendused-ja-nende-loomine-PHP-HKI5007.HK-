@@ -40,8 +40,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdown03">
           <a class="dropdown-item" href="photoUpload.php">Lisamine</a>
-          <a class="dropdown-item" href="privategallery.php">Minu fotod</a>
-          <a class="dropdown-item" href="semipublicgallery.php">Kõikide fotod</a>
+          <a class="dropdown-item" href="galleryPrivate.php">Minu fotod</a>
+          <a class="dropdown-item disabled" href="#">Kasutajate fotod</a>
+          <a class="dropdown-item" href="galleryPublic.php">Avalikud fotod</a>
         </div>
         </div>
         </div>

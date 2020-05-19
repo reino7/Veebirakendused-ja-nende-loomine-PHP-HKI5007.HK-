@@ -23,7 +23,7 @@
 	require("classes/Photo.class.php");
 	require("fnc_gallery.php");
 
-	$privateThumbnails = readAllMyPictureThumbs();
+	$usersThumbnails = readAllSignInUsersPictureThumbs();
 ?>
 <!DOCTYPE html>
 <html lang="et">
@@ -43,12 +43,12 @@
 	?>
   <div class="container">
 
-    <h2>Minu oma pildid</h2>
+    <h2>Kasutajate fotod</h2>
     <hr>
 
     <div class="row text-center">
 
-			<?php echo $privateThumbnails; ?>
+			<?php echo $usersThumbnails; ?>
 			
   	</div>
 
