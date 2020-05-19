@@ -153,8 +153,21 @@ class Photo {
     }
 
     imagecopy($this->myNewImage, $waterMark, $waterMarkX, $waterMarkY, 0, 0, $waterMarkW, $waterMarkH);
-    
+
   }//addWatermark lõppeb
 
 
+  public function getEXIFInfo() {
+
+    // kõige ees on "@" märk, et vältida hoiatust, kui ei õnnestu lugeda
+    @$exif = exif_read_data($this->picToUpload["tmp_name"], "ANY_TAG", 0, true);
+    
+		if(!empty($exif["DateTimeOriginal"])){
+			//kui sai lugeda, siis omistan pildistamise kuupäeva klassi muutujale
+			$this->photoDate = $exif["DateTimeOriginal"];
+		} else {
+			$this->photoDate = NULL;
+    }
+    return $this->photoDate;
+  }
 } // klass lõppeb

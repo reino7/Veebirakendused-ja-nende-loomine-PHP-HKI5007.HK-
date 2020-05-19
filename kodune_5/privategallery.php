@@ -20,25 +20,40 @@
 	}
 
 	require("db/configuration.php");
+	require("classes/Photo.class.php");
 	require("fnc_gallery.php");
-	
+
 	$privateThumbnails = readAllMyPictureThumbs();
 ?>
 <!DOCTYPE html>
 <html lang="et">
+
 <head>
-	<meta charset="utf-8">
-	<title>Veebirakendused ja nende loomine 2020</title>
+  <meta charset="utf-8">
+  <title>Veebirakendused ja nende loomine 2020</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="css/lightbox.min.css" rel="stylesheet" />
 </head>
+
 <body>
-	<h1>Minu oma pildid</h1>
-	<p>See leht on valminud õppetöö raames!</p>
-	<p><?php echo $_SESSION["userFirstName"]. " " .$_SESSION["userLastName"] ."."; ?> Logi <a href="?logout=1">välja</a>!</p>
-	<p>Tagasi <a href="home.php">avalehele</a>!</p>
-	<hr>
-    <div>
-		<?php echo $privateThumbnails; ?>
+
+  <?php 
+		require "includes/header.inc.php";
+	?>
+  <div class="container">
+
+    <h2>Minu oma pildid</h2>
+    <hr>
+
+    <div class="row text-center">
+
+			<?php echo $privateThumbnails; ?>
+			
+  	</div>
+
 	</div>
-	<hr>
-</body>
-</html>
+
+  <?php 
+		require "includes/footer.inc.php";
+	?>

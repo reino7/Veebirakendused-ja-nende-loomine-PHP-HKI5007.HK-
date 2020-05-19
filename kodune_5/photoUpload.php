@@ -33,6 +33,7 @@ require "classes/Photo.class.php";
 
 $error  = null;
 $notice = null;
+$showEXIFInfo = null;
 // $thumberror     = null;
 // $thumbnotice    = null;
 $imageFileType       = null;
@@ -111,7 +112,11 @@ if (isset($_POST["photoSubmit"]) and !empty($_FILES["fileToUpload"]["tmp_name"])
     } else {
       $error = $warningStart . "Vähendatud pildi salvestamsiel tekkis viga!" . $warningEnd;
     }
-    
+
+    // EXIF info lugemine uploadi käigus
+    // $showEXIFInfo = $photoUp->getEXIFInfo();
+    // echo $showEXIFInfo;
+
     // if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $originalTarget)) {
     //   $notice .= "Originaalpilt laeti üles!";
     // } else {
@@ -160,19 +165,22 @@ if (isset($_POST["photoSubmit"]) and !empty($_FILES["fileToUpload"]["tmp_name"])
 
 <!DOCTYPE html>
 <html lang="et">
+
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Veebirakendused ja nende loomine 2020</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
 <body>
-    
-	<?php 
+
+  <?php 
 		require "includes/header.inc.php";
 	?>
 
   <div class="container">
-    <h1>Fotode üleslaadimine</h1>
+    <h2>Fotode üleslaadimine</h2>
     <hr>
     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
       <br>

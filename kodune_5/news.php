@@ -38,7 +38,7 @@ $newsHTML = readNewsPage(5);
 	?>
 
 	<div class="container">
-		<h1>Uudised</h1>
+		<h2>Uudised</h2>
 		<hr>
 		<div>
 			<?php echo $newsHTML; ?>

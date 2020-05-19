@@ -73,7 +73,7 @@ if (isset($_POST["newsBtn"])) {
 	?>
 
   <div class="container">
-    <h1>Uudise lisamine</h1>
+    <h2>Uudise lisamine</h2>
     <hr>
     <br>
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

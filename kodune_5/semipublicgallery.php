@@ -29,16 +29,21 @@
 <head>
 	<meta charset="utf-8">
 	<title>Veebirakendused ja nende loomine 2020</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-	<h1>Kasutajate avaldatavad pildid</h1>
-	<p>See leht on valminud õppetöö raames!</p>
-	<p><?php echo $_SESSION["userFirstName"]. " " .$_SESSION["userLastName"] ."."; ?> Logi <a href="?logout=1">välja</a>!</p>
-	<p>Tagasi <a href="home.php">avalehele</a>!</p>
-	<hr>
-    <div>
+	    
+	<?php 
+		require "includes/header.inc.php";
+	?>
+  <div class="container">
+
+		<h2>Kasutajate avaldatavad pildid</h2>
+		<hr>
 		<?php echo $privateThumbnails;; ?>
-	</div>
-	<hr>
-</body>
-</html>
+
+		</div>
+
+<?php 
+	require "includes/footer.inc.php";
+?>
