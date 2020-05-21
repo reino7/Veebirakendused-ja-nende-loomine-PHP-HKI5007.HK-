@@ -22,10 +22,8 @@ class Photo {
       // faili tüübi väljaselgitamine ja sobivuse kontroll
       if ($this->imageFileType == "image/jpeg") {
         $this->imageFileType = "jpg";
-        echo $this->imageFileType;
       } elseif ($this->imageFileType == "image/png") {
         $this->imageFileType = "png";
-        echo $this->imageFileType;
       } else {
         $error = "Ainult jpg/jpeg ja png pildid on lubatud! ";
       }

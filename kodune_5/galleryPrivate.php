@@ -43,13 +43,12 @@
 		require "includes/header.inc.php";
 	?>
   <div class="container">
-
-		<h2>Minu fotod</h2>
-		<?php 
+		<!-- <?php 
 			$photosInDB = countPics(1);
 			echo $photosInDB;
-		
-		?>
+		?> -->
+
+		<h2>Minu fotod </h2>
     <hr>
 
     <div class="row text-center">
