@@ -5,10 +5,10 @@
 		$html = "";
 
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUserName"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $conn->prepare("SELECT filename, alttext FROM vr20_photos WHERE userid=? AND deleted IS NULL");
+		$stmt = $conn->prepare("SELECT filename, alttext FROM vr20_photos WHERE userid=? AND deleted IS NULL ORDER BY id LIMIT ?,?");
 		echo $conn->error;
 
-		$stmt->bind_param("i", $_SESSION["userid"]);
+		$stmt->bind_param("iii", $_SESSION["userid"], $_GET["offset"], $_GET["limit"]);
 		$stmt->bind_result($filenameFromDb, $altFromDb);
 		$stmt->execute();
 

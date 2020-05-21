@@ -24,6 +24,7 @@
 	require("fnc_gallery.php");
 
 	$privateThumbnails = readAllPrivatePictureThumbs();
+
 ?>
 <!DOCTYPE html>
 <html lang="et">
@@ -32,8 +33,8 @@
   <meta charset="utf-8">
   <title>Veebirakendused ja nende loomine 2020</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link href="css/lightbox.min.css" rel="stylesheet" />
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="css/lightbox.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -48,11 +49,20 @@
 
     <div class="row text-center">
 
-			<?php echo $privateThumbnails; ?>
-			
-  	</div>
+      <?php echo $privateThumbnails; ?>
 
-	</div>
+			<ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="galleryPrivate.php?limit=4&offset=<?php echo ($_GET["offset"] - $_GET["limit"]) ?>">Previous</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="galleryPrivate.php?limit=4&offset=<?php echo ($_GET["offset"] + $_GET["limit"]) ?>">Next</a>
+          </li>
+				</ul>
+				
+    </div>
+
+  </div>
 
   <?php 
 		require "includes/footer.inc.php";

@@ -16,6 +16,11 @@ class Photo {
     // hiljem tuleks kõigepealt selgitada, kas on sobiv fail
     // üleslaadimiseks ja siis ka ImageFileType kindlaks teha
 
+    // kontrollime üleslaetud foto suurust, kui liiga suur, siis väljastame veateate
+    if ($_FILES["fileToUpload"]["size"] > $fileUploadSizeLimit) {
+      $error .= "Valitud fail on liiga suur! ";
+    }
+
     $this->myTempImage = $this->createImageFromFile($this->picToUpload["tmp_name"], $this->imageFileType);
 
   }
