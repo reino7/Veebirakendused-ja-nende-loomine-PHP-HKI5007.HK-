@@ -44,7 +44,12 @@
 	?>
   <div class="container">
 
-    <h2>Minu fotod</h2>
+		<h2>Minu fotod</h2>
+		<?php 
+			$photosInDB = countPics(1);
+			echo $photosInDB;
+		
+		?>
     <hr>
 
     <div class="row text-center">
@@ -53,10 +58,10 @@
 
 			<ul class="pagination justify-content-center">
           <li class="page-item">
-            <a class="page-link" href="galleryPrivate.php?limit=4&offset=<?php echo ($_GET["offset"] - $_GET["limit"]) ?>">Previous</a>
+            <a class="page-link" href="galleryPrivate.php?limit=8&offset=<?php echo ($_GET["offset"] - $_GET["limit"]) ?>">Previous</a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="galleryPrivate.php?limit=4&offset=<?php echo ($_GET["offset"] + $_GET["limit"]) ?>">Next</a>
+            <a class="page-link" href="galleryPrivate.php?limit=8&offset=<?php echo ($_GET["offset"] + $_GET["limit"]) ?>">Next</a>
           </li>
 				</ul>
 				

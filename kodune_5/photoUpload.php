@@ -18,7 +18,7 @@ require "db/configuration.php";
 require "fnc_photoUpload.php";
 require "classes/Photo.class.php";
 
-// pildi üleslaadimise osa
+// // pildi üleslaadimise osa
 // echo "<pre>";
 // var_dump($_POST); // siin on kogu muu kraam
 // echo "</pre>";
@@ -50,23 +50,23 @@ $warningEnd          = '</div>';
 
 if (isset($_POST["photoSubmit"]) and !empty($_FILES["fileToUpload"]["tmp_name"])) {
 
-  // kontrollime, kas tegemist on üldse pildiga
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  // // kontrollime, kas tegemist on üldse pildiga
+  // $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
-  if ($check !== false) {
+  // if ($check !== false) {
 
-    // faili tüübi väljaselgitamine ja sobivuse kontroll
-    if ($check["mime"] == "image/jpeg") {
-      $imageFileType = "jpg";
-    } elseif ($check["mime"] == "image/png") {
-      $imageFileType = "png";
-    } else {
-      $error = "Ainult jpg/jpeg ja png pildid on lubatud! ";
-    }
+  //   // faili tüübi väljaselgitamine ja sobivuse kontroll
+  //   if ($check["mime"] == "image/jpeg") {
+  //     $imageFileType = "jpg";
+  //   } elseif ($check["mime"] == "image/png") {
+  //     $imageFileType = "png";
+  //   } else {
+  //     $error = "Ainult jpg/jpeg ja png pildid on lubatud! ";
+  //   }
 
-  } else {
-    $error = "Valitud fail ei ole pilt! ";
-  }
+  // } else {
+  //   $error = "Valitud fail ei ole pilt! ";
+  // }
 
   //ega pole liiga suur
   if ($_FILES["fileToUpload"]["size"] > $fileUploadSizeLimit) {
@@ -88,7 +88,7 @@ if (isset($_POST["photoSubmit"]) and !empty($_FILES["fileToUpload"]["tmp_name"])
   //kui vigu pole
   if ($error == null) {
 
-    $photoUp = new Photo($_FILES["fileToUpload"], $imageFileType);
+    $photoUp = new Photo($_FILES["fileToUpload"]);
 
     //teen pildi väiksemaks
     // if ($imageFileType == "jpg") {

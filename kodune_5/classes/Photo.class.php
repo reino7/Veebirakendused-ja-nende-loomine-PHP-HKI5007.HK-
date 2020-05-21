@@ -8,17 +8,32 @@ class Photo {
   public $myNewImage; // väiksem pikslikogum
 
 
-  function __construct($picToUpload, $imageFileType) {
+  function __construct($picToUpload) {
 
     $this->picToUpload = $picToUpload;
-    $this->imageFileType = $imageFileType;
+    $this->imageFileType = $this->picToUpload["type"];
 
     // hiljem tuleks kõigepealt selgitada, kas on sobiv fail
     // üleslaadimiseks ja siis ka ImageFileType kindlaks teha
+    $check = getimagesize($this->picToUpload["tmp_name"]);
 
-    // kontrollime üleslaetud foto suurust, kui liiga suur, siis väljastame veateate
-    if ($_FILES["fileToUpload"]["size"] > $fileUploadSizeLimit) {
-      $error .= "Valitud fail on liiga suur! ";
+    if ($check !== false) {
+
+      // faili tüübi väljaselgitamine ja sobivuse kontroll
+      if ($this->imageFileType == "image/jpeg") {
+        $this->imageFileType = "jpg";
+        echo $this->imageFileType;
+      } elseif ($this->imageFileType == "image/png") {
+        $this->imageFileType = "png";
+        echo $this->imageFileType;
+      } else {
+        $error = "Ainult jpg/jpeg ja png pildid on lubatud! ";
+      }
+
+    } else {
+      $error = "Valitud fail ei ole pilt! ";
+
+      return $error;
     }
 
     $this->myTempImage = $this->createImageFromFile($this->picToUpload["tmp_name"], $this->imageFileType);
@@ -175,4 +190,5 @@ class Photo {
     }
     return $this->photoDate;
   }
+
 } // klass lõppeb
