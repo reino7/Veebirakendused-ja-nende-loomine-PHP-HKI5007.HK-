@@ -5,11 +5,11 @@
 		$html = "";
 
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUserName"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $conn->prepare("SELECT filename, alttext FROM vr20_photos WHERE userid=? AND deleted IS NULL ORDER BY id LIMIT ?,?");
+		$stmt = $conn->prepare("SELECT filename, alttext, created FROM vr20_photos WHERE userid=? AND deleted IS NULL ORDER BY id LIMIT ?,?");
 		echo $conn->error;
 
 		$stmt->bind_param("iii", $_SESSION["userid"], $_GET["offset"], $_GET["limit"]);
-		$stmt->bind_result($filenameFromDb, $altFromDb);
+		$stmt->bind_result($filenameFromDb, $altFromDb, $createdFromDB);
 		$stmt->execute();
 
 		while($stmt->fetch()){
@@ -18,7 +18,9 @@
 			<div class="col-3">
 				<a href="' .$GLOBALS["normalPhotoDir"] .$filenameFromDb .'" data-lightbox="MinuPildid" data-title="'.$altFromDb .'" class="d-block mb-3 h-100 text-decoration-none">
 					<img class="img-fluid img-thumbnail" src="' .$GLOBALS["thumbPhotoDir"] .$filenameFromDb .'" alt="'.$altFromDb .'">
-					<small class="form-text text-muted">'. $altFromDb .'</small>
+					<small class="form-text text-muted">Nimi: '. $altFromDb .'</small>
+					<small class="form-text text-muted">Üleslaadija: '. $_SESSION["userid"] .'</small>
+					<small class="form-text text-muted">Lisatud: '. $createdFromDB.'</small>
 				</a>
 			</div>
 		' ."\n";
@@ -121,14 +123,14 @@
 
 		$conn   = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUserName"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 
-		$stmt   = $conn->prepare("SELECT COUNT(id) FROM vr20_photos WHERE privacy<=? AND deleted IS NULL");
+		$stmt   = $conn->prepare("SELECT COUNT(id) FROM vr20_photos WHERE privacy<=? AND userid=? AND deleted IS NULL");
 		echo $conn->error;
 		
-		$stmt->bind_param("i", $privacy);
-		$stmt->bind_result($count);
+		$stmt->bind_param("ii", $privacy, $_SESSION["userid"]);
+		$stmt->bind_result($photoCount);
 		$stmt->execute();
 		$stmt->fetch();
-		$notice = $count;
+		$notice = $photoCount;
 
 		$stmt->close();
 		$conn->close();
@@ -138,17 +140,31 @@
 
 
 	function readAllSemiPublicPictureThumbsPage($page, $limit){
-		$privacy = 2;
+		$privacy = 3; // avalik
 		$skip = $page * $limit;
 		$finalHTML = "";
 		$html = "";
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUserName"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $conn->prepare("SELECT filename, alttext FROM vr20_photos WHERE privacy<=? AND deleted IS NULL LIMIT ?,?");
-		$stmt = $conn->prepare("SELECT vr20_photos.filename, vr20_photos.alttext, vr20_users.firstname, vr20_users.lastname FROM vr20_photos JOIN vr20_users on vr20_users.id = vr20_photos.userid WHERE vr20_photos.privacy<=? AND vr20_photos.deleted");
+		$stmt = $conn->prepare("SELECT  	vr20_photos.id,
+																			vr20_users.firstname, 
+																			vr20_users.lastname,
+																			vr20_photos.filename, 
+																			vr20_photos.alttext 
+														FROM   		vr20_photos 
+														JOIN 			vr20_users 
+														ON 				vr20_users.id = vr20_photos.userid 
+														WHERE  		vr20_photos.privacy <=? 
+														AND				vr20_photos.deleted  IS NULL");
 		//$stmt = $conn->prepare("SELECT vr20_photos.Id, vr20_photos.filename, vr20_photos.alttext, vr20_users.firstname, vr20_users.lastname FROM vr20_photos JOIN vr20_users on vr20_users.id = vr20_photos.userid WHERE vr20_photos.privacy<=? AND vr20_photos.deleted");
 		echo $conn->error;
-		$stmt->bind_param("iii", $privacy, $skip, $limit);
-		$stmt->bind_result($filenameFromDb, $altFromDb, $firstnameFromBb, $lastnameFromDb);
+		$stmt->bind_param("i", $privacy);
+		$stmt->bind_result(
+												$idFromDb, 
+												$firstnameFromBb, 
+												$lastnameFromDb, 
+												$filenameFromDb, 
+												$altFromDb);
 		$stmt->execute();
 		while($stmt->fetch()){
 			$html .= '<div class="galleryelement">' ."\n";

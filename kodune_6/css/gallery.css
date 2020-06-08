@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: start;
 	flex-wrap: wrap;
-	background-color: #F0F0F0;
+	background-color: #0074D9;
 }
 
 .galleryelement
@@ -18,16 +18,18 @@
 .galleryelement p
 {
 	height: 40px;
-	font-family: arial, sans-serif;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: whitesmoke;
+
 }
 
 .thumb
 {
-    border-radius: 5px;
-    cursor: pointer;
-	opacity: 0.7;
+  border-radius: 5px;
+  cursor: pointer;
+	opacity: 0.95;
 	transform-origin: 50% 50%;
-    transition: 0.5s;
+  transition: 0.5s;
 	filter: blur(1px);
 }
 
@@ -35,5 +37,5 @@
 {	
 	opacity: 1;
 	filter: none;
-	transform: scale(1.05);
+	transform: scale(1.2);
 }

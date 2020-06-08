@@ -24,6 +24,7 @@
 	require("fnc_gallery.php");
 
 	$privateThumbnails = readAllPrivatePictureThumbs();
+	$photosInDB = countPics(3);
 
 ?>
 <!DOCTYPE html>
@@ -43,12 +44,8 @@
 		require "includes/header.inc.php";
 	?>
   <div class="container">
-		<!-- <?php 
-			$photosInDB = countPics(1);
-			echo $photosInDB;
-		?> -->
 
-		<h2>Minu fotod </h2>
+		<h2>Minu fotod (<?php echo $photosInDB; ?>)</h2>
     <hr>
 
     <div class="row text-center">

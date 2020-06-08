@@ -25,7 +25,7 @@
 	
 	$page = 1; //vaikimisi määran lehe numbriks 1 (see on vajalik näiteks siis, kui esimest korda galerii avatakse ja lehtedega pole veel tegeletud)
 	$limit = 10;//mitu pilti ühele lehele soovin mahutada. Reaalelus oleks normaalne palju suurem number, näiteks 30 jne
-	$picCount = countPics(2);//küsin kõigi näidatavate piltide arvu, et teada, palju lehekülgi üldse olla võiks. Parameetriks piltide privaatsus. Funktsioon ise näitena allpool.
+	$picCount = countPics(3);//küsin kõigi näidatavate piltide arvu, et teada, palju lehekülgi üldse olla võiks. Parameetriks piltide privaatsus. Funktsioon ise näitena allpool.
 	//echo $picCount;
 	//kui nüüd tuli ka lehe aadressis GET meetodil parameeter page, siis kontrollin, kas see on reaalne ja, kui pole, siis pane jõuga lehe numbriks 1 või viimase võimaliku lehe numbri
 	if(!isset($_GET["page"]) or $_GET["page"] < 1){
@@ -45,13 +45,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Veebirakendused ja nende loomine 2020</title>
-  <link rel="stylesheet" type="text/css" href="style/gallery.css">
-  <link rel="stylesheet" type="text/css" href="style/modal.css">
-	<script src="javascript/modal.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="css/gallery.css">
+  <link rel="stylesheet" type="text/css" href="css/modal.css">
+	<script src="js/modal.js" defer></script>
 </head>
 
 <body>
 
+	<!-- Modaalaken -->
   <div id="modalArea" class="modalArea">
     <!--Sulgemisnupp-->
     <span id="modalClose" class="modalClose">&times;</span>
@@ -59,7 +60,7 @@
     <div class="modalHorizontal">
       <div class="modalVertical">
         <p id="modalCaption"></p>
-        <img src="empty.png" id="modalImg" class="modalImg" alt="galeriipilt">
+        <img src="img/empty.png" id="modalImg" class="modalImg" alt="galeriipilt">
 
       </div>
     </div>
