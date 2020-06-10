@@ -1,10 +1,10 @@
 <?php
 
   // Database variables
-  $serverUserName = "reinoristissaar";
-  $serverPassword = "cf40IgTx";
-  $serverHost = "localhost";
-  $database = "reinoristissaar";
+  $serverUserName = "";
+  $serverPassword = "";
+  $serverHost = "";
+  $database = "";
 
   // Uploaded photos location variables
   $originalPhotoDir    = "uploadOriginalPhoto/";
