@@ -24,7 +24,7 @@
 	require("fnc_gallery.php");
 
 	$privateThumbnails = readAllPrivatePictureThumbs();
-	$photosInDB = countPics(3);
+	$photosInDB = countUserPics(3);
 
 ?>
 <!DOCTYPE html>

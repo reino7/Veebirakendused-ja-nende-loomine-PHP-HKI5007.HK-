@@ -1,11 +1,11 @@
 <?php
 	require("classes/Session.class.php");
-	SessionManager::sessionStart("vr20", 0, "/~andrus.rinde/", "tigu.hk.tlu.ee");
+	SessionManager::sessionStart("vr20", 0, "/~reino.ristissaar/", "tigu.hk.tlu.ee");
 	
 	$id = $_REQUEST["photoid"];
 	$rating = $_REQUEST["rating"];
 	
-	require("../../../../configuration.php");
+	require("db/configuration.php");
 	
 	$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUserName"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 	$stmt = $conn->prepare("INSERT INTO vr20_photoratings (photoid, userid, rating) VALUES(?,?,?)");

@@ -90,8 +90,8 @@ if ($hourNow >= 6 and $hourNow < 12) {
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdown03">
           <a class="dropdown-item" href="photoUpload.php">Lisamine</a>
-          <a class="dropdown-item" href="semipublicgallery.php">Semipublic gallery</a>
           <a class="dropdown-item" href="galleryPrivate.php?limit=8&offset=0">Minu fotod</a>
+          <a class="dropdown-item" href="semipublicgallery.php?page=1">Semipublic gallery</a>
           <a class="dropdown-item disabled" href="#">Kasutajate fotod</a>
           <a class="dropdown-item disabled" href="galleryPublic.php">Avalikud fotod</a>
         </div>

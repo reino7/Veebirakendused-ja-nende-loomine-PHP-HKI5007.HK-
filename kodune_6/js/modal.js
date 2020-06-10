@@ -14,14 +14,14 @@ window.onload = function(){
 	}
 	document.getElementById("modalClose").addEventListener("click", closeModal);
 	modalImg.addEventListener("click", closeModal);
-	// document.getElementById("storeRating").addEventListener("click", storeRating);
+	document.getElementById("storeRating").addEventListener("click", storeRating);
 }
 
 function openModal(e){
-	// document.getElementById("avgRating").innerHTML = "";
-	// for(let i = 1; i < 6; i ++){
-	// 	document.getElementById("rate" + i).checked = false;
-	// }
+	document.getElementById("avgRating").innerHTML = "";
+	for(let i = 1; i < 6; i ++){
+		document.getElementById("rate" + i).checked = false;
+	}
 	modalImg.src = photoDir + e.target.dataset.fn;
 	photoId = e.target.dataset.id;
 	modalImg.alt = e.target.alt;
@@ -56,11 +56,3 @@ function storeRating(){
 		//AJAX lõppeb
 	}
 }
-
-
-
-
-
-
-
-
